@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas画线</title>
+    <style>
+        #cnv{
+            border: 1px solid #aaa;
+            display: block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cnv" width="500" height="500"></canvas>
+    <script>
+        /**
+        画线的基本步骤：
+        1.准备canvas容器
+        2.获取画布
+        3.获取上下文，就是画笔
+        3.开启路径
+        4.指定起始点
+        5.指定结束点
+        6.描边
+        7.关闭路径
+        */
+        
+        const can = document.getElementById('cnv');
+        let context = can.getContext('2d');
+        context.beginPath();
+        context.moveTo(100, 100);
+        context.lineTo(252, 250);
+
+        //设置画笔的颜色和线宽
+        context.strokeStyle = 'red'
+        context.lineWidth = '5'
+        context.stroke();
+        context.closePath();
+        
+
+        //封装画直线函数
+
+        function grawLine(x1,y1,x2,y2,width,color){
+            context.beginPath();
+            context.moveTo(x1,y1);
+            context.lineTo(x2,y2);
+            context.strokeStyle = color;
+            context.lineWidth = width;
+            context.stroke();
+            context.closePath();
+        }
+        
+
+        grawLine(20,40,240,350,4,'green');
+
+        //画矩形
+        
+            for (let i = 0; i < 7 ;i++) {
+                let h = Math.random()*280+10;
+                let setcolor = '#' +  parseInt(Math.random()*0xFFFFFF).toString(16);
+                context.fillStyle = setcolor;
+                context.fillRect(120+40*i,400-h,20,h);
+            }
+           
+        
+    </script>
+</body>
+</html>
